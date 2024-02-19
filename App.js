@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, ImageBackground, View } from 'react-native';
 import CategoriesScreen from './screens/CategoriesScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -23,7 +23,7 @@ export default function App() {
         screenOptions={{
           headerStyle: { backgroundColor: '#150d00' },
           headerTintColor: 'white',
-          sceneContainerStyle: { backgroundColor: '#301c00' },
+          sceneContainerStyle: { backgroundColor: 'transparent' },
           drawerContentStyle: { backgroundColor: '#150d00' },
           drawerInactiveTintColor: 'white',
           drawerActiveBackgroundColor: '#cf9e5a',
@@ -55,36 +55,45 @@ export default function App() {
     <>
       <StatusBar style='light' />
       <FavoritesContextProvider>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerStyle: { backgroundColor: '#150d00' },
-              headerTintColor: 'white',
-              contentStyle: { backgroundColor: '#301c00' }
-            }}>
-            {/* This is pointing to the above function which creates a Drawer.Navigator with its own Navigation */}
-            <Stack.Screen
-              name="Drawer"
-              component={DrawerNavigator}
-              options={{
-                headerShown: false
-              }}
-            />
-            <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
-            <Stack.Screen name="Meal" component={MealScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </FavoritesContextProvider>
+
+        <ImageBackground
+          source={require('./assets/spaghetti-back.jpg')}
+          style={styles.container}
+          imageStyle={styles.backgroundImage}
+          resizeMode='cover'>
+            <NavigationContainer style={styles.container}>
+              <Stack.Navigator
+                screenOptions={{
+                  headerStyle: { backgroundColor: '#150d00' },
+                  headerTintColor: 'white',
+                  contentStyle: { backgroundColor: 'transparent' }
+                  
+                }}>
+                {/* This is pointing to the above function which creates a Drawer.Navigator with its own Navigation */}
+                <Stack.Screen
+                  name="Drawer"
+                  component={DrawerNavigator}
+                  options={{
+                    headerShown: false
+                  }}
+                />
+                <Stack.Screen name="MealsOverview" component={MealsOverviewScreen} />
+                <Stack.Screen name="Meal" component={MealScreen} />
+              </Stack.Navigator>
+            </NavigationContainer>
+        </ImageBackground>
+      </FavoritesContextProvider >
 
     </>
   );
 }
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#fff',
-  //   alignItems: 'center',
-  //   justifyContent: 'center',
-  // },
+  container: {
+    flex: 1,
+
+  },
+  backgroundImage: {
+    opacity: .3
+  }
 });

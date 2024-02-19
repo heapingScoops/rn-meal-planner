@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     outerContainer: {
         flex: 1,
         margin: 16,
-        overflow: 'hidden',
+
         borderRadius: 18,
         backgroundColor: 'white',
         borderColor: 'black',
@@ -43,12 +43,13 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowRadius: 8,
         shadowOpacity: .4,
-        overflow: Platform.OS === 'android' ? 'hidden' : 'visible'
+        overflow: Platform.OS === 'android' ? 'hidden' : 'visible',
+        elevation: 2,
     },
     innerContainer: {
         borderRadius: 18,
         flex: 1,
-        elevation: 2,
+        
         overflow: 'hidden'
     },
     image: {
